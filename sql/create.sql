@@ -1,7 +1,7 @@
 -- Verificar si la tabla existe y eliminarla si es así
 DROP TABLE IF EXISTS isabido86_coderhouse.weather_data;
 
--- Crear la tabla con el campo ID autogenerado
+-- Crear la tabla con el campo ID autogenerado y ingest_timestamp para llevar el control
 CREATE TABLE isabido86_coderhouse.weather_data (
     id INTEGER IDENTITY(1,1) PRIMARY KEY,
     name VARCHAR(255),
