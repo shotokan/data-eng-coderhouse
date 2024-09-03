@@ -52,8 +52,7 @@ class WeatherAPI:
         return df
 
 
-
-if __name__ == "__main__":
+def execute():
     api = WeatherAPI()
     cities = ['Merida', 'Telchac Pueblo', 'Motul']
     for city in cities:
