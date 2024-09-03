@@ -2,6 +2,8 @@ import requests
 import os
 import pandas as pd
 from datetime import datetime, timezone
+import time
+
 from db import WeatherRepo
 
 class WeatherAPI:
@@ -19,6 +21,7 @@ class WeatherAPI:
     def get_df(self, data):
         location = data.get('location', {})
         current = data.get('current', {})
+
         data = {
             "name": location["name"],
             "region": location["region"],
@@ -26,9 +29,9 @@ class WeatherAPI:
             "lat": location["lat"],
             "lon": location["lon"],
             "tz_id":location["tz_id"],
-            "localtime_epoch": datetime.fromtimestamp(location.get('localtime_epoch', 0), tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S'),
-            "localtime": location["localtime"],
-            "current_last_updated_epoch": datetime.fromtimestamp(current.get('last_updated_epoch', 0), tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S'),
+            "localtime_epoch":location.get('localtime_epoch', 0),
+            "local_time": location["localtime"],
+            "current_last_updated_epoch": current.get('last_updated_epoch', 0),
             "current_last_updated": current["last_updated"],
             "current_temp_c": current["temp_c"],
             "current_temp_f": current["temp_f"],
